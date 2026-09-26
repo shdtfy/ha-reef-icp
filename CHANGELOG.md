@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.15.1 - Development
+
+### Fixed
+
+- Localized the new reef / nutrient method dashboard guidance for German Home Assistant installations.
+- Replaced untranslated values such as:
+  - `weeks` with `Wochen`
+  - `Weeks 1-2` with `Wochen 1–2`
+  - `Week 5` with `Woche 5`
+- Replaced generic interval labels with more specific labels such as **Medienwechsel** where appropriate.
+- Localized ZEOvit reactor maintenance guidance and long-term-operation warnings.
+- Localized Aquaforest Zeo Mix notes.
+- Localized SANGOKAI BASIS guidance.
+- Localized Red Sea NO3:PO4-X guidance.
+- Added localized units for:
+  - capsules
+  - drops
+  - measuring spoons
+- Improved German product and reactor labels where appropriate.
+- Added display support for NeoZeo support dosing around media changes.
+
+### Improved
+
+- Reef-method guidance now follows the Home Assistant frontend language more consistently.
+- NeoZeo setup stages and maintenance information are displayed in a more readable localized format.
+- Reef-method range values now use context-aware labels such as reactor flow, media change or dose instead of the generic range label.
+
+### Testing
+
+- Added regression coverage for the localized reef-method frontend.
+- Expanded the automated test suite to **46 passing tests**.
+
+### Versioning
+
+- Bumped the Home Assistant integration version to **0.15.1**.
+- Bumped the dashboard resource cache version to **0.15.1**.
+
 ## 0.15.0 - Development
 
 ### Added
