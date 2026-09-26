@@ -1,5 +1,199 @@
 # Changelog
 
+## 0.15.8 - Development
+
+### Fixed
+
+- Reworked measurement-value formatting after the 0.15.7 polish pass exposed excessive laboratory precision in several overview values.
+- Salinity is now displayed with one decimal place, for example `33.742 psu` → `33,7 psu` in German.
+- Conductivity is displayed with one decimal place.
+- pH is displayed with up to two decimal places.
+- Density and relative density retain the precision needed for those measurements.
+- Large concentration values at or above `1000 mg/l` are displayed as rounded whole values with locale-aware thousands grouping.
+- German number formatting consistently uses decimal commas and thousands separators in the measurement overview.
+
+### Improved
+
+- Measurement history / trend indicators are slightly quieter again so measured values remain the visual focus.
+- Kept the compact spacing improvements from the 0.15.7 action-plan polish.
+- Measurement formatting now follows a central, measurement-aware display policy instead of relying only on a generic large-number pass.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.8**.
+- Bumped the frontend resource cache version to **0.15.8**.
+- Updated the existing `test_ui_contract_015.py` regression contract for the 0.15.8 measurement formatter.
+- Updated the repository manifest test to expect **0.15.8**.
+- Removed obsolete duplicate / version-specific tests left over from 0.15.7 cleanup.
+
+## 0.15.7 - Development
+
+### UI polish
+
+This release adds a focused polish pass to the redesigned Reef ICP dashboard introduced throughout the 0.15.x series.
+
+### Improved
+
+- Improved formatting of large measurement values for better readability.
+  - Example: `19020 mg/l` → `19.020 mg/l` with German localization.
+  - Number formatting automatically follows the selected language.
+- Increased visibility of measurement history / trend indicators while keeping them visually secondary.
+- Trend indicators now receive a clearer highlight when interacting with a measurement row.
+- Reduced unnecessary vertical space in the **Next steps / action plan** section.
+- Tightened spacing and icon sizing for a more compact mobile layout.
+
+### Measurements
+
+- Large integer values are now easier to scan in expanded measurement categories.
+- Existing decimal formatting and units remain unchanged.
+- Measurement status logic and laboratory interpretation are not modified by this release.
+
+### Laboratory status handling
+
+- Reef ICP continues to preserve provider-derived measurement status information where available.
+- Laboratory-provided status information remains authoritative when successfully parsed.
+- This prevents the UI from overriding a laboratory assessment based solely on the numerical difference from the displayed target value.
+
+### UI architecture
+
+- Added a dedicated frontend polish layer:
+  - `reef-icp-card-polish.js`
+- The polish layer builds on the existing 0.15.6 measurement redesign without restructuring the stable base card.
+- The new frontend resource is automatically registered and versioned together with the Reef ICP card resources.
+
+### Technical
+
+- Bumped Reef ICP integration version to **0.15.7**.
+- Bumped frontend resource cache version to **0.15.7**.
+- Added regression tests for the new polish layer and resource registration.
+- Existing Reef ICP card, 0.15 extension and UI redesign layers remain intact.
+
+## 0.15.6 - Development
+
+### Improved
+
+- Redesigned the measurement-category area for faster scanning and a more compact mobile layout.
+- Added a dedicated **Measurements** section label to strengthen the dashboard hierarchy.
+- Reduced vertical spacing between measurement categories.
+- Category headers now show a clearer secondary status line, for example:
+  - all clear
+  - 1 auffälliger Wert
+  - multiple auffällige Werte
+  - values without a clear rating
+- Warning and critical categories are visually easier to spot while healthy categories remain quieter.
+- Total measurement counts are now visually de-emphasized so attention stays on abnormal values.
+
+### Changed
+
+- Measurement-category icons are more compact and less dominant.
+- Category rows now rely more on spacing and separators instead of heavy card styling.
+- Expanded measurement lists have been visually simplified.
+- Measurement rows now use cleaner separators and less nested-box styling.
+- Important measured values remain visually prominent while labels and supporting information are quieter.
+- Mobile spacing has been tightened to reduce unnecessary scrolling.
+
+### UI hierarchy
+
+The dashboard now follows a clearer structure:
+
+1. Aquarium overview
+2. Next steps / action plan
+3. Measurements
+4. Recommendation sources
+5. Additional context
+
+This continues the dashboard redesign introduced across the 0.15.x releases.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.6**.
+- Bumped the frontend resource cache version to **0.15.6**.
+- Extended UI regression tests for measurement-category redesign, attention counts, measurement section hierarchy and compact measurement rows.
+
+## 0.15.5 - Development
+
+### Improved
+
+- Reworked the dashboard hierarchy to make the most important information visible earlier.
+- Moved the action plan directly below the aquarium header and above the measurement categories.
+- Added a compact action summary showing how many concrete actions and observations are currently present.
+- Reduced visual weight in the action plan by replacing nested boxes with lighter separators and spacing.
+
+## 0.15.4 - Development
+
+### Improved
+
+- Added a new compact hero-style aquarium header.
+- Aquarium name is now visually emphasized.
+- Analysis number, date and provider are grouped into a cleaner secondary line.
+- Aquarium volume, stocking profile, supply system and reef / nutrient method are now displayed as compact profile chips.
+- Added a subtle Reef ICP glow to the dashboard header.
+- Improved the mobile layout of Brightwell NeoZeo guidance.
+
+### Changed
+
+- NeoZeo values of `0 ml/day` are now displayed as **no dosing** for better readability.
+- NeoZeo support dosing around media changes now uses a more compact mobile-friendly layout.
+- MicroBacter7 and Reef BioFuel support dosing now clearly separate product name, support duration and daily dose.
+- Custom target count is no longer displayed in the main aquarium header to keep the profile area compact.
+
+### UI
+
+- Refined typography and spacing in the aquarium header.
+- Added a compact status badge.
+- Reduced visual clutter while keeping the existing Reef ICP design language.
+- Continued the dashboard redesign introduced in 0.15.3.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.4**.
+- Bumped the frontend resource cache version to **0.15.4**.
+- Updated UI regression tests for the new header and NeoZeo layout.
+
+## 0.15.3 - Development
+
+### Improved
+
+- Completely redesigned the Reef / Nutrient Method section of the dashboard.
+- Added a compact method overview with the most important calculated values directly visible at a glance.
+- Improved visual hierarchy so important values such as media quantity, reactor flow and dosing stand out more clearly.
+- Reduced nested card styling for a cleaner and lighter interface.
+- Added dedicated information and warning blocks so important guidance no longer disappears inside normal text.
+- Improved mobile layout for reef-method guidance.
+
+### Changed
+
+- Brightwell NeoZeo now uses a compact vertical timeline instead of multiple large cards:
+  - Weeks 1–2
+  - Weeks 3–4
+  - Week 5
+  - Maintenance
+- Reef-method details now use cleaner separators and spacing instead of heavily nested boxes.
+- Manufacturer guidance now has a clearer visual identity separate from supply-system recommendations.
+- Product and method names are emphasized more strongly while labels are quieter and calculated values are more prominent.
+- Manufacturer source links are now displayed as compact source badges.
+
+### Technical
+
+- Added a new dedicated frontend UI layer:
+  - `reef-icp-card-ui.js`
+- The existing `reef-icp-card-v015.js` functionality remains unchanged for backward compatibility.
+- Added the new UI resource to Home Assistant frontend registration.
+- Bumped the integration and frontend cache version to **0.15.3**.
+- Updated repository tests for the new version.
+
+### Notes
+
+This release focuses on the first stage of the larger dashboard redesign.
+
+The next planned UI improvements include:
+
+- Compact hero-style aquarium header
+- Stronger summary and action overview
+- Cleaner measurement category headers
+- Separate visual identities for laboratory, supply-system and reef-method recommendations
+- Further reduction of nested cards throughout the dashboard
+
 ## 0.15.2 - Development
 
 ### Improved
