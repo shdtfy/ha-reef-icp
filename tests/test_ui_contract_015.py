@@ -27,13 +27,17 @@ def test_translations_label_reef_method() -> None:
         assert "reef_method" in data["options"]["step"]["aquarium_settings"]["data"]
 
 
-def test_card_extension_is_registered() -> None:
+def test_card_extensions_are_registered() -> None:
     init_source = (INTEGRATION / "__init__.py").read_text(encoding="utf-8")
-    card_path = INTEGRATION / "www" / "reef-icp-card-v015.js"
-    assert card_path.exists()
+    extension_path = INTEGRATION / "www" / "reef-icp-card-v015.js"
+    ui_path = INTEGRATION / "www" / "reef-icp-card-ui.js"
+    assert extension_path.exists()
+    assert ui_path.exists()
     assert "CARD_EXTENSION_URL" in init_source
     assert "reef-icp-card-v015.js" in init_source
-    assert 'CARD_VERSION = "0.15.3"' in init_source
+    assert "CARD_UI_URL" in init_source
+    assert "reef-icp-card-ui.js" in init_source
+    assert 'CARD_VERSION = "0.15.4"' in init_source
 
 
 def test_card_extension_localizes_reef_method_guidance() -> None:
@@ -50,6 +54,19 @@ def test_card_extension_localizes_reef_method_guidance() -> None:
     assert "function extPracticalDigits" in source
     assert "function extRoundUnitNumbers" in source
     assert "function extRoundCalculatedDisplays" in source
+
+
+def test_ui_layer_contains_0154_redesign() -> None:
+    source = (INTEGRATION / "www" / "reef-icp-card-ui.js").read_text(
+        encoding="utf-8"
+    )
+    assert 'REEF_ICP_UI_VERSION = "0.15.4"' in source
+    assert "function uiNeoZeoTimeline" in source
+    assert "function uiSupportRow" in source
+    assert 'noDosing: "keine Dosierung"' in source
+    assert ".reef-method-support-row-v0153" in source
+    assert "0.15.4 hero header" in source
+    assert ".aquarium-profile .reef-method-chip" in source
 
 
 def test_sensor_extension_exposes_guidance_payload() -> None:
