@@ -37,7 +37,7 @@ def test_card_extensions_are_registered() -> None:
     assert "reef-icp-card-v015.js" in init_source
     assert "CARD_UI_URL" in init_source
     assert "reef-icp-card-ui.js" in init_source
-    assert 'CARD_VERSION = "0.15.5"' in init_source
+    assert 'CARD_VERSION = "0.15.6"' in init_source
 
 
 def test_card_extension_localizes_reef_method_guidance() -> None:
@@ -56,16 +56,16 @@ def test_card_extension_localizes_reef_method_guidance() -> None:
     assert "function extRoundCalculatedDisplays" in source
 
 
-def test_ui_layer_contains_0155_dashboard_hierarchy() -> None:
+def test_ui_layer_contains_0156_measurement_hierarchy() -> None:
     source = (INTEGRATION / "www" / "reef-icp-card-ui.js").read_text(
         encoding="utf-8"
     )
-    assert 'REEF_ICP_UI_VERSION = "0.15.5"' in source
+    assert 'REEF_ICP_UI_VERSION = "0.15.6"' in source
     assert "function uiNeoZeoTimeline" in source
     assert "function uiSupportRow" in source
     assert 'noDosing: "keine Dosierung"' in source
     assert ".reef-method-support-row-v0153" in source
-    assert "0.15.4 hero header, retained in 0.15.5" in source
+    assert "0.15.4 hero header, retained in 0.15.6" in source
     assert ".aquarium-profile .reef-method-chip" in source
     assert "function uiUpgradeActionPlan" in source
     assert "function uiUpgradeRecommendationPanels" in source
@@ -75,6 +75,13 @@ def test_ui_layer_contains_0155_dashboard_hierarchy() -> None:
     assert ".action-plan-panel-v0155" in source
     assert ".source-panel-v0155" in source
     assert ".supplement-panel-v0155" in source
+    assert "function uiUpgradeMeasurementCategories" in source
+    assert "function uiCategoryStatusCount" in source
+    assert 'measurementsSection: "Messwerte"' in source
+    assert 'attentionMany: "auffällige Werte"' in source
+    assert ".measurement-category-v0156" in source
+    assert ".category-subtitle-v0156" in source
+    assert ".measurement-row-v0156" in source
 
 
 def test_sensor_extension_exposes_guidance_payload() -> None:
