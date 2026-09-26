@@ -1,5 +1,46 @@
 # Changelog
 
+## 0.15.2 - Development
+
+### Improved
+
+- Added practical rounding for calculated dosing and reef-method values throughout the dashboard.
+- Large calculated values are now shown without unnecessary decimal places.
+- Medium-sized values keep one decimal place where useful.
+- Small dosing values retain additional precision so meaningful low-dose recommendations are not lost.
+- Improved readability for calculated values such as:
+  - NeoZeo media amounts
+  - reactor flow
+  - daily bacterial / carbon-source dosing
+  - supply-system correction doses
+  - action-plan dosing values
+  - laboratory dosing values
+
+### Changed
+
+- Reef-method calculations now use adaptive display precision instead of showing up to three decimal places everywhere.
+- Calculated values are rounded only for display.
+- Original calculation values and imported ICP measurements remain unchanged.
+- German and English number formatting continue to follow the Home Assistant frontend language.
+
+### Examples
+
+- `528,402 g` → `528 g`
+- `249,934 L/h` → `250 L/h`
+- `13,21 ml` → `13,2 ml`
+- `6,605 ml` → `6,6 ml`
+- Small values such as `0,25 ml` retain the precision required for practical dosing.
+
+### Testing
+
+- Added UI regression coverage for the adaptive rounding functions.
+- Automated test suite remains at **46 passing tests**.
+
+### Versioning
+
+- Bumped the Home Assistant integration version to **0.15.2**.
+- Bumped the dashboard resource cache version to **0.15.2**.
+
 ## 0.15.1 - Development
 
 ### Fixed
