@@ -25,7 +25,7 @@ from .statistics import (
 
 PLATFORMS: list[Platform] = [Platform.SENSOR]
 
-CARD_VERSION = "0.15.2"
+CARD_VERSION = "0.15.3"
 CARD_URL = "/reef_icp/reef-icp-card.js"
 CARD_RESOURCE_URL = f"{CARD_URL}?v={CARD_VERSION}"
 CARD_FILE = Path(__file__).parent / "www" / "reef-icp-card.js"
@@ -33,6 +33,10 @@ CARD_FILE = Path(__file__).parent / "www" / "reef-icp-card.js"
 CARD_EXTENSION_URL = "/reef_icp/reef-icp-card-v015.js"
 CARD_EXTENSION_RESOURCE_URL = f"{CARD_EXTENSION_URL}?v={CARD_VERSION}"
 CARD_EXTENSION_FILE = Path(__file__).parent / "www" / "reef-icp-card-v015.js"
+
+CARD_UI_URL = "/reef_icp/reef-icp-card-ui.js"
+CARD_UI_RESOURCE_URL = f"{CARD_UI_URL}?v={CARD_VERSION}"
+CARD_UI_FILE = Path(__file__).parent / "www" / "reef-icp-card-ui.js"
 
 _SENSOR_PLATFORM_ENTRIES_KEY = f"{DOMAIN}_sensor_platform_entries"
 
@@ -132,7 +136,7 @@ async def _async_register_one_lovelace_resource(
 
 
 async def _async_register_lovelace_resources(hass: HomeAssistant) -> None:
-    """Register the bundled card and its 0.15 extension in storage mode."""
+    """Register the bundled card and UI extension resources in storage mode."""
     lovelace = hass.data.get(LOVELACE_DATA)
     if lovelace is None or lovelace.resource_mode != MODE_STORAGE:
         return
@@ -147,6 +151,7 @@ async def _async_register_lovelace_resources(hass: HomeAssistant) -> None:
         resources,
         CARD_EXTENSION_RESOURCE_URL,
     )
+    await _async_register_one_lovelace_resource(resources, CARD_UI_RESOURCE_URL)
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
@@ -163,11 +168,17 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
                 path=str(CARD_EXTENSION_FILE),
                 cache_headers=False,
             ),
+            StaticPathConfig(
+                url_path=CARD_UI_URL,
+                path=str(CARD_UI_FILE),
+                cache_headers=False,
+            ),
         ]
     )
 
     add_extra_js_url(hass, CARD_RESOURCE_URL)
     add_extra_js_url(hass, CARD_EXTENSION_RESOURCE_URL)
+    add_extra_js_url(hass, CARD_UI_RESOURCE_URL)
     await _async_register_lovelace_resources(hass)
 
     return True
