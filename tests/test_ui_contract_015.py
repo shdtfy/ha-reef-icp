@@ -33,7 +33,20 @@ def test_card_extension_is_registered() -> None:
     assert card_path.exists()
     assert "CARD_EXTENSION_URL" in init_source
     assert "reef-icp-card-v015.js" in init_source
-    assert 'CARD_VERSION = "0.15.0"' in init_source
+    assert 'CARD_VERSION = "0.15.1"' in init_source
+
+
+def test_card_extension_localizes_reef_method_guidance() -> None:
+    source = (INTEGRATION / "www" / "reef-icp-card-v015.js").read_text(
+        encoding="utf-8"
+    )
+    assert 'REEF_ICP_V015_EXTENSION = "0.15.1"' in source
+    assert 'mediaChange: "Medienwechsel"' in source
+    assert 'zeovitCleaningNote:' in source
+    assert 'zeovitCaution:' in source
+    assert 'stageWeeks12:' in source
+    assert 'function extUnit' in source
+    assert 'function extGuidanceNote' in source
 
 
 def test_sensor_extension_exposes_guidance_payload() -> None:
