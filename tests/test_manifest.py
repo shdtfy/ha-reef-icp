@@ -1,10 +1,7 @@
 """Repository-level release metadata tests."""
-
 from __future__ import annotations
-
 import json
 from pathlib import Path
-
 
 def test_manifest_version_is_current_release_candidate() -> None:
     root = Path(__file__).resolve().parents[1]
@@ -14,5 +11,5 @@ def test_manifest_version_is_current_release_candidate() -> None:
         )
     )
     assert manifest["domain"] == "reef_icp"
-    assert manifest["version"] == "0.15.6"
+    assert manifest["version"] == "0.15.7"
     assert "pypdf==6.19.0" in manifest["requirements"]
