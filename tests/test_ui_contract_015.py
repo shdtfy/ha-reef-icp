@@ -33,7 +33,7 @@ def test_card_extension_is_registered() -> None:
     assert card_path.exists()
     assert "CARD_EXTENSION_URL" in init_source
     assert "reef-icp-card-v015.js" in init_source
-    assert 'CARD_VERSION = "0.15.2"' in init_source
+    assert 'CARD_VERSION = "0.15.3"' in init_source
 
 
 def test_card_extension_localizes_reef_method_guidance() -> None:
