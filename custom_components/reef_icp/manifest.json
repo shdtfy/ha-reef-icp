@@ -1,22 +1,12 @@
 {
   "domain": "reef_icp",
   "name": "Reef ICP",
-  "codeowners": [
-    "@shdtfy"
-  ],
+  "codeowners": ["@shdtfy"],
   "config_flow": true,
-  "dependencies": [
-    "file_upload",
-    "recorder",
-    "frontend",
-    "http",
-    "lovelace"
-  ],
+  "dependencies": ["file_upload", "recorder", "frontend", "http", "lovelace"],
   "documentation": "https://github.com/shdtfy/ha-reef-icp",
   "integration_type": "service",
   "issue_tracker": "https://github.com/shdtfy/ha-reef-icp/issues",
-  "requirements": [
-    "pypdf==6.19.0"
-  ],
-  "version": "0.15.6"
+  "requirements": ["pypdf==6.19.0"],
+  "version": "0.15.7"
 }
