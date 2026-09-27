@@ -1,5 +1,227 @@
 # Changelog
 
+## 0.15.17 - Development
+
+### Fixed
+
+- Improved topic-boundary detection in the structured laboratory interpretation.
+- Follow-up sentences now remain assigned to the correct parameter.
+- Mentions of other parameters inside a sentence no longer move text into the wrong section.
+- Common abbreviations such as `z.B.` are protected during sentence splitting.
+- Fixed Calcium follow-up text being incorrectly assigned to Alkalinity (KH).
+- Improved handling of Silicon and related diatom guidance.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.17**.
+- Bumped the frontend resource cache version to **0.15.17**.
+
+
+## 0.15.16 - Development
+
+### Added
+
+- Added a structured presentation for imported laboratory interpretations.
+- Long laboratory interpretation texts are now automatically organized into individual topic cards instead of being displayed as one large text block.
+- Recognized topics include:
+  - Alkalinity (KH)
+  - Calcium
+  - Iodine
+  - Zinc
+  - Molybdenum
+  - Lithium
+  - Phosphate
+  - Nitrate
+  - Silicon
+  - Magnesium
+  - Potassium
+  - Strontium
+  - Bromide
+- Added visual interpretation labels such as **Elevated**, **Too low**, **Deficiency**, **Action** and **Note**.
+- The unchanged original laboratory interpretation remains available in an expandable section.
+
+### Improved
+
+- Laboratory dosing instructions that specify a total amount over several days now also show the calculated daily dose.
+- Improved readability and hierarchy of laboratory interpretations and recommendations.
+- Improved mobile presentation of the laboratory sections.
+- Refined the stocking-profile presentation and grouping of relevant measurements.
+
+### Safety
+
+- The original laboratory interpretation remains preserved and accessible.
+- Imported laboratory assessments remain separate from Reef ICP's own supply-system recommendations.
+- Reef ICP does not silently modify laboratory target ranges or imported laboratory recommendations.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.16**.
+- Bumped the frontend resource cache version to **0.15.16**.
+
+
+## 0.15.15 - Development
+
+### Improved
+
+- Replaced generic stocking-profile insight counts with a more useful **relevant values** count.
+- Moved the relevant-value count directly beside the selected stocking profile.
+- Reduced unnecessary vertical space in the stocking-profile header.
+- Improved spacing and alignment on mobile displays.
+- Made the explanatory stocking-profile note more compact.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.15**.
+- Bumped the frontend resource cache version to **0.15.15**.
+
+
+## 0.15.14 - Development
+
+### Improved
+
+- Redesigned the stocking-profile section to match the newer Reef ICP dashboard design.
+- Added a dedicated profile header with the selected stocking profile and relevant-value overview.
+- Added clearer visual grouping for:
+  - carbonate chemistry
+  - nutrient development
+  - salinity
+- Improved presentation of measured values, warnings and trends.
+- Added context-specific icons.
+- Improved mobile spacing and readability.
+
+### Safety
+
+- Stocking profiles provide additional context and prioritization only.
+- Stocking profiles do not modify imported laboratory target ranges.
+- Laboratory recommendations and supply-system dosing calculations remain independent from the selected stocking profile.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.14**.
+- Bumped the frontend resource cache version to **0.15.14**.
+
+
+## 0.15.13 - Development
+
+### Added
+
+- Added automatic daily-dose calculation when a laboratory provides both a total correction dose and a dosing period.
+- Example:
+  - `51 ml` over `20 days` → `2.55 ml daily`
+- Example:
+  - `3.7 ml` over `7 days` → `0.53 ml daily`
+
+### Safety
+
+- Explicit daily dosing instructions from the laboratory always take priority.
+- A daily amount is only calculated when both the total amount and dosing period are available.
+- Reef ICP does not invent a dosing amount when the required information is missing.
+- The calculation is provider-independent for supported laboratory dosing formats.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.13**.
+- Bumped the frontend resource cache version to **0.15.13**.
+
+
+## 0.15.12 - Development
+
+### Fixed
+
+- Fixed Oceamo dosing instructions being incorrectly split into separate products.
+- Dosing periods such as `aufgeteilt auf 20 Tage` now stay attached to the correct product.
+- Repeated product references are recognized as part of the same recommendation.
+- Preparation instructions no longer appear as separate product names.
+
+### Improved
+
+- Total correction dose and dosing period are displayed separately.
+- Preparation instructions such as mixing an Add-On with osmosis water are recognized and kept with the correct recommendation.
+- Daily dosing from a prepared solution is displayed separately where provided by the laboratory.
+- Additional laboratory guidance remains in its own information block.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.12**.
+- Bumped the frontend resource cache version to **0.15.12**.
+
+
+## 0.15.11 - Development
+
+### Fixed
+
+- Fixed laboratory parameters being incorrectly merged into a single item.
+- Parameters such as Iodine, Strontium, Potassium and Boron are detected individually.
+- Fixed incorrect laboratory assessment counts caused by merged parameters.
+- Improved recognition of English and German laboratory parameter names.
+
+### Added
+
+- Added separate handling for laboratory reports containing concrete dosing instructions.
+- Added structured display for:
+  - product name
+  - dose
+  - dosing frequency / period
+- Added a dedicated mobile layout for dosing recommendations.
+
+### Localization
+
+- German laboratory status labels are displayed as **Zu niedrig**, **Zu hoch** and **Im Soll** instead of English action text.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.11**.
+- Bumped the frontend resource cache version to **0.15.11**.
+
+
+## 0.15.10 - Development
+
+### Improved
+
+- Redesigned the laboratory assessment section.
+- Laboratory assessments are grouped by status:
+  - too low
+  - too high
+  - in range
+- Added compact parameter chips instead of presenting the assessment as one long text block.
+- Added item counts for laboratory assessment groups.
+- Improved the mobile layout.
+- Reduced the visual weight of parameters that are already within the laboratory target.
+
+### Localization
+
+- Added German laboratory status labels.
+- Improved localized parameter names in the laboratory assessment section.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.10**.
+- Bumped the frontend resource cache version to **0.15.10**.
+
+
+## 0.15.9 - Development
+
+### Improved
+
+- Improved formatting of ICP measurement values throughout the dashboard.
+- Added locale-aware German and English number formatting.
+- Salinity and conductivity use practical display precision.
+- Density and relative density retain the precision required for those measurements.
+- pH and alkalinity use cleaner decimal formatting.
+- Large concentration values no longer show unnecessary decimal places.
+- Improved thousands separators for readability.
+
+### Fixed
+
+- Fixed measurement formatting not being applied reliably after rendering.
+- Improved compatibility between the base Reef ICP card and the additional UI / polish layers.
+
+### Technical
+
+- Bumped the Reef ICP integration version to **0.15.9**.
+- Bumped the frontend resource cache version to **0.15.9**.
+- Added and updated regression tests for measurement formatting.
+
 ## 0.15.8 - Development
 
 ### Fixed
