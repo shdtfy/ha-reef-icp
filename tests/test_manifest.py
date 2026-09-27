@@ -14,5 +14,5 @@ def test_manifest_version_is_current_release_candidate() -> None:
         )
     )
     assert manifest["domain"] == "reef_icp"
-    assert manifest["version"] == "0.15.10"
+    assert manifest["version"] == "0.15.11"
     assert "pypdf==6.19.0" in manifest["requirements"]
