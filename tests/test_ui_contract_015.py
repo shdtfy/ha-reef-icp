@@ -41,7 +41,7 @@ def test_card_extensions_are_registered() -> None:
     assert "reef-icp-card-ui.js" in init_source
     assert "CARD_POLISH_URL" in init_source
     assert "reef-icp-card-polish.js" in init_source
-    assert 'CARD_VERSION = "0.15.14"' in init_source
+    assert 'CARD_VERSION = "0.15.15"' in init_source
 
 
 def test_card_extension_localizes_reef_method_guidance() -> None:
