@@ -8,78 +8,74 @@
 
 A custom Home Assistant integration for importing reef-aquarium ICP analysis reports from multiple laboratory providers.
 
-> **Status:** Early development / beta testing.
+> **Status:** Stable release · v1.0.0
 
 ## Screenshots
 
-Reef ICP turns uploaded laboratory reports into a provider-independent Home Assistant view with current values, status information and long-term history.
+Reef ICP turns laboratory reports into a complete aquarium analysis workspace inside Home Assistant — combining measurements, trends, laboratory guidance, stocking-profile context and dosing-system recommendations.
 
 <p align="center">
   <img src="docs/images/dashboard-overview.jpg"
        alt="Reef ICP dashboard overview in Home Assistant"
-       width="420">
+       width="430">
 </p>
 
 <p align="center">
-  <strong>Dashboard overview</strong><br>
-  Current report, provider/report type, status counts, previous analysis and measurement categories at a glance.
+  <strong>Everything important at a glance</strong><br>
+  The latest ICP analysis, overall status, previous report, aquarium profile,
+  selected supply system and all measurement categories in one dashboard.
 </p>
 
-<table>
-  <tr>
-    <td align="center"><strong>Measurements & comparison</strong></td>
-    <td align="center"><strong>Cross-provider history</strong></td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/images/measurement-details.jpg"
-           alt="Expanded Reef ICP measurement category"
-           width="330">
-    </td>
-    <td align="center">
-      <img src="docs/images/multi-provider-history.jpg"
-           alt="Reef ICP cross-provider history chart"
-           width="330">
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      Target ranges, previous values, changes and trend indicators.
-    </td>
-    <td align="center">
-      Comparable values from different laboratories share one history. The selected point shown here originates from Fauna Marin.
-    </td>
-  </tr>
-</table>
+<br>
 
 <table>
   <tr>
-    <td align="center"><strong>PDF import</strong></td>
-    <td align="center"><strong>Home Assistant integration</strong></td>
+    <td align="center"><strong>Action plan</strong></td>
+    <td align="center"><strong>Interactive history</strong></td>
   </tr>
   <tr>
-    <td align="center">
-      <img src="docs/images/pdf-import.jpg"
-           alt="Reef ICP PDF import dialog"
-           width="330">
-    </td>
-    <td align="center">
-      <img src="docs/images/integration-overview.jpg"
-           alt="Reef ICP integration overview in Home Assistant"
-           width="330">
-    </td>
+    <td align="center"><img src="docs/images/action-plan.jpg" alt="Reef ICP action plan" width="330"></td>
+    <td align="center"><img src="docs/images/history-chart.jpg" alt="Reef ICP interactive measurement history" width="330"></td>
   </tr>
   <tr>
-    <td align="center">
-      Upload and confirm one or several reports in one import session. Reef ICP detects the supported laboratory for every PDF automatically.
-    </td>
-    <td align="center">
-      Imported analytes are exposed as normal Home Assistant entities and long-term statistics.
-    </td>
+    <td align="center">Reef ICP combines relevant findings into a compact list of actions and observations while keeping the original recommendation sources separate.</td>
+    <td align="center">Follow measurements across multiple analyses with previous values, changes, target values and long-term trends.</td>
   </tr>
 </table>
 
-> Screenshots show a development installation containing test reports from multiple supported laboratories and report types.
+<br>
+
+<table>
+  <tr>
+    <td align="center"><strong>Supply-system recommendations</strong></td>
+    <td align="center"><strong>Laboratory recommendations</strong></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/supply-system.jpg" alt="Reef ICP supply system recommendations" width="330"></td>
+    <td align="center"><img src="docs/images/laboratory-recommendations.jpg" alt="Imported laboratory dosing recommendations" width="330"></td>
+  </tr>
+  <tr>
+    <td align="center">Provider-independent recommendations are mapped to the selected aquarium supply system, including individual-element corrections where supported.</td>
+    <td align="center">Recommendations contained in the original laboratory report remain visible separately and are never silently replaced by Reef ICP calculations.</td>
+  </tr>
+</table>
+
+<br>
+
+<p align="center">
+  <img src="docs/images/stocking-profile.jpg"
+       alt="Reef ICP stocking profile interpretation"
+       width="430">
+</p>
+
+<p align="center">
+  <strong>Stocking-profile-aware interpretation</strong><br>
+  Reef ICP can highlight measurements and trends that are especially relevant
+  for the selected aquarium profile while preserving the laboratory's original
+  reference ranges and status.
+</p>
+
+> Screenshots show a development installation containing test reports. Displayed measurements, recommendations and dosing amounts are examples only and are not general dosing instructions.
 
 ## Supported providers
 
@@ -616,7 +612,7 @@ https://github.com/shdtfy/ha-reef-icp
 
 Version `0.11.0` completed the project-wide namespace rename. Existing test installations that used the previous internal namespace should be removed and installed again.
 
-## Installation during development
+## Installation
 
 1. Open HACS.
 2. Add this repository as a custom **Integration** repository:
