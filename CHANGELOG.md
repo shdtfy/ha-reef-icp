@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.15.17 - Development
+## 1.0.0 - Stable Release
 
 ### Fixed
 
