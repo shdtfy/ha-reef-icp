@@ -41,7 +41,7 @@ def test_card_extensions_are_registered() -> None:
     assert "reef-icp-card-ui.js" in init_source
     assert "CARD_POLISH_URL" in init_source
     assert "reef-icp-card-polish.js" in init_source
-    assert 'CARD_VERSION = "0.15.8"' in init_source
+    assert 'CARD_VERSION = "0.15.9"' in init_source
 
 
 def test_card_extension_localizes_reef_method_guidance() -> None:
@@ -88,20 +88,23 @@ def test_ui_layer_contains_0156_measurement_hierarchy() -> None:
     assert ".measurement-row-v0156" in source
 
 
-def test_polish_layer_contains_0158_measurement_formatting() -> None:
+def test_polish_layer_contains_0159_measurement_formatting() -> None:
     source = (INTEGRATION / "www" / "reef-icp-card-polish.js").read_text(
         encoding="utf-8"
     )
-    assert 'REEF_ICP_POLISH_VERSION = "0.15.8"' in source
+    assert 'REEF_ICP_POLISH_VERSION = "0.15.9"' in source
     assert '["salinität", 1]' in source
     assert '["salinity", 1]' in source
     assert '["leitfähigkeit", 1]' in source
     assert '["dichte", 4]' in source
     assert '["ph", 2]' in source
+    assert 'normalizedUnit === "mg/l"' in source
     assert "Math.abs(value) >= 1000" in source
     assert "useGrouping: true" in source
     assert "maximumFractionDigits: digits" in source
     assert "function polishMeasurementNumbers" in source
+    assert 'shadow.querySelectorAll(".measurement")' in source
+    assert "function reefIcpCardLanguage" in source
 
 
 def test_sensor_extension_exposes_guidance_payload() -> None:
