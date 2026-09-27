@@ -1,4 +1,4 @@
-    const REEF_ICP_POLISH_VERSION = "0.15.17";
+    const REEF_ICP_POLISH_VERSION = "1.0.0";
 
     const REEF_ICP_PRECISION = new Map([
       ["salinität", 1],
